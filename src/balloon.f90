@@ -15,6 +15,7 @@ module balloon
   ! Universal gas constant
   real(real64), private :: R = 8.31446261815324
 
+  ! PI
   real(real64), private :: PI = 4.D0 * DATAN(1.D0)
 
 contains 
