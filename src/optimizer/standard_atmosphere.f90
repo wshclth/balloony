@@ -4,6 +4,7 @@
 module standard_atmosphere
 
   use iso_fortran_env
+
   implicit none
 
   ! Universal gas constant in J / (mol*K)
@@ -106,7 +107,7 @@ contains
 
     ! The formula is piecewise based on the Lapse rate of tempurature
     ! for level of the atmosphere
-    if (Lb .NE. 0.0) then
+    if (int(hb) .NE. 11000 .AND. int(hb) .NE. 47000) then
       p = p0 * ((Tb - (geo_pot_m - hb) * lb) / Tb) ** g0MRL
     else
       p = p0 * exp((-g0 * M * (geo_pot_m - hb)) / (Rs * Tb))
@@ -140,7 +141,7 @@ contains
 
     ! The formula is piecewise based on the Lapse rate of tempurature
     ! for level of the atmosphere
-    if (Lb .NE. 0.0) then
+    if (int(hb) .NE. 11000 .AND. int(hb) .NE. 47000) then
       rho = rhob * ((Tb - (geo_pot_m - hb) * Lb) / Tb) ** (g0MRL - 1.0)
     else
       rho = rhob * exp((-g0 * M * (geo_pot_m - hb)) / (Rs * Tb))
@@ -212,7 +213,7 @@ contains
     tmp_atm_constants = atmospheric_constants(geopotential_lower_bound)
     base_lower_temp = tmp_atm_constants(3)
 
-    if (geopotential_upper_bound == 84852.0) then
+    if (int(geopotential_upper_bound) == 84852) then
       base_upper_temp = 187.15
     else
       tmp_atm_constants = atmospheric_constants(geopotential_upper_bound)

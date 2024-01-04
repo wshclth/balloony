@@ -11,11 +11,11 @@ program constrain
   real(real64) :: optimizer_h = 0.00001
 
   ! Target payload size in newtows
-  real(real64) :: target_payload_n = 4.0 * 9.81
+  real(real64) :: target_payload_n = 2.0 * 9.81
 
   ! Initial conditions
   real(real64) :: volume_at_altitude = 1.0
-  real(real64) :: target_altitude = 171
+  real(real64) :: target_altitude = 300
 
   ! Results
   real(real64) :: volume_at_surface = 0.0, balloon_radius = 0.0
@@ -44,6 +44,10 @@ program constrain
     real(lift(volume_wrt_altitude(target_altitude, volume_at_surface), target_altitude) - target_payload_n), "N"
   print *, " ", "VOLUME @ TAL  =", real(volume_at_altitude), "m^3"
   print *, " ", "VOLUME @ MSL  =", real(volume_at_surface), "m^3"
+
+  print *, ""
+
+  print *, "REQUIREMENTS"
   print *, " ", "BURST RADIUS >=", real(balloon_radius), "m"
 
 contains
