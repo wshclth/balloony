@@ -35,4 +35,4 @@
 *.swp
 
 # Executables
-src/balloon-optimizer
+src/optimizer/optimizer
