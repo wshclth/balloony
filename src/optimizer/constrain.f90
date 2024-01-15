@@ -14,11 +14,14 @@ program constrain
   real(real64) :: target_payload_n = 2.0 * 9.81
 
   ! Initial conditions
-  real(real64) :: volume_at_altitude = 1.0
+  real(real64) :: volume_at_altitude = 0.0
   real(real64) :: target_altitude = 300
 
   ! Results
   real(real64) :: volume_at_surface = 0.0, balloon_radius = 0.0
+
+  ! Read standard input
+  read(input_unit,*) target_payload_n, target_altitude
 
   ! Find the target volume such that the lift is 0 given the desired payload
   ! size.

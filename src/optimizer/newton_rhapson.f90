@@ -4,6 +4,8 @@ module newton_rhapson
 
 contains
 
+  ! find_zero finds the minimum of easy 1D functions using the newton rhapson
+  ! technique
   function find_zero(f, h, tol, x0) result(ans)
 
     implicit none
@@ -20,17 +22,17 @@ contains
     x = x0
     fx = f(x)
     do while (abs(fx) >= tol)
-      ! Calculate the derivative of f(fill_volume, C) = lift wrt g(fill_volume)
+      ! Calculate the derivative of f by fixed points
       fx_ph = f(x - h)
       fx_mh = f(x + h)
 
-      ! Derivative of the lift
+      ! Derivative of f
       dx = (fx_mh - fx_ph) / (2. * h)
 
-      ! Compute the new volume at altitude
+      ! Compute where to go
       x = x - (fx / dx)
 
-      ! Compute the new lift given the new volume
+      ! Compute the new value of f
       fx = f(x)
     end do
 

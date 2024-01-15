@@ -174,7 +174,7 @@ contains
     integer :: closest_index
     
     ! for linear interpolation
-    real(real64) :: m, b
+    real(real64) :: slope, intercept
 
     ! Convert altitude_m fro geometric meters to geopotential meters
     geo_pot_m = meters_to_geopotential_meters(altitude_m)
@@ -225,10 +225,10 @@ contains
     ! (geopotential_upper_bound, base_upper_temp)
     ! m = delta y / delta x
     ! b = y - mx
-    m = (base_upper_temp - base_lower_temp) / (geopotential_upper_bound - geopotential_lower_bound)
-    b = base_lower_temp - (m * geopotential_lower_bound)
+    slope = (base_upper_temp - base_lower_temp) / (geopotential_upper_bound - geopotential_lower_bound)
+    intercept = base_lower_temp - (slope * geopotential_lower_bound)
 
-    k = m * geo_pot_m + b
+    k = slope * geo_pot_m + intercept
   end function
 
 end module
